@@ -7,10 +7,16 @@
 - [Usage](#usage)
 - [Contributing](#contributing)
 
+> :warning: NOTE: WIP
+
 ## About <a name = "about"></a>
 
-Web Bundlr is a package to deploy static web apps to areweave using Bundlr. Bundlr Network is a reliable multichain solution for Arweave.
-Learn more about [Bundlr](https://bundlr.network/) and [Arweave](https://www.arweave.org/)
+Web Bundlr is a package to deploy web apps to areweave using Bundlr. Bundlr Network is a reliable multichain solution for Arweave.
+Learn more about [Bundlr](https://bundlr.network/) and [Arweave](https://www.arweave.org/).
+
+> :warning: **Issue with deploying react apps on arweave is that apps are deployed and accessed using the basepath (Manifest ID) but due to the dynamic basepath we are unable to configure react app beforehand with the basepath and the url lacks basepath on the browser while visiting different routes and if reloaded it shows Not Found.**
+
+> :warning: **Deploy using Devnet bundlr first to check everything is working and then deploy using production bundlr.**
 
 
 ## Installing <a name = "installing"></a>
@@ -26,14 +32,14 @@ yarn add global web-bundlr
 
 ## Usage <a name = "usage"></a>
 
-In the initial phase for the project we will go through steps on how to use web-bundlr in your projects to push static react and next.js web apps.
+In the initial phase for the project we will go through steps on how to use web-bundlr in your projects to push react and next.js web apps.
 
 ### React
 Bundlr creates a arweave manifest file when uploading a folder. So the manifest contains the paths of the files and the transaction ID to resolve to for the given path. You can see more about it here [Arweave Manifest](https://github.com/ArweaveTeam/arweave/blob/master/doc/path-manifest-schema.md).
 
 So make the react build compatible on the areweave, we must use relative urls on the href instead of absolute ones so that the manifest can resolve the file path. For example href="/dist/index.js" must be replaced with either href="dist/index.js" or href="./dist/index.js". So to do so, we must add the following to package.json so the paths can resolve correctly.
 ```
-homepage: ''."
+homepage: "."
 ```
 Note for Nextjs Static Export: Add the configuration to the next.config file.
 Learn about it [here](https://nextjs.org/docs/advanced-features/static-html-export) for the supported and unsupported features in static html export.
