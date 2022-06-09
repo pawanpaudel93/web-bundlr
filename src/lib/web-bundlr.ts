@@ -2,6 +2,7 @@ import * as fs from 'fs';
 
 import Bundlr from '@bundlr-network/client';
 import glob from 'glob';
+import { Logger } from 'tslog';
 
 export type WebBundlrConfig = {
   url: string;
@@ -16,6 +17,13 @@ export type WebBundlrConfig = {
   };
 };
 
+export const log: Logger = new Logger({
+  name: 'web-bundlr',
+  displayFilePath: 'hidden',
+  displayFunctionName: false,
+  displayDateTime: false,
+});
+
 export class WebBundlr extends Bundlr {
   private config: WebBundlrConfig;
 
@@ -26,16 +34,16 @@ export class WebBundlr extends Bundlr {
 
   private modifyHtmls(path: string) {
     const files = glob.sync(path + '/**/*.html');
-    files.forEach((file) => {
-      this.modifyHtml(file);
-    });
+    for (let i = 0; i < files.length; i++) {
+      this.modifyHtml(files[i]);
+    }
   }
 
   private modifyHtml(path: string) {
     const html = fs.readFileSync(path, 'utf8');
     const modifiedHtml = html
-      .replace('src="/', 'src="./')
-      .replace("src='/", "src='./");
+      .replace(/src="\/(.*?)"/g, 'src="./$1"')
+      .replace(/src='\/(.*?)'/g, "src='$1'");
     fs.writeFileSync(path, modifiedHtml);
   }
 
@@ -47,8 +55,8 @@ export class WebBundlr extends Bundlr {
       10,
       false,
       true,
-      async (log: string) => {
-        console.log(log);
+      async (logInfo: string) => {
+        log.info(logInfo);
       }
     );
   }

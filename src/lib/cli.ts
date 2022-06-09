@@ -6,15 +6,8 @@ import { promisify } from 'util';
 
 import fastFolderSize from 'fast-folder-size';
 import prompt from 'prompt';
-import { Logger } from 'tslog';
 
-import { WebBundlr, WebBundlrConfig } from './web-bundlr';
-
-const log: Logger = new Logger({
-  name: 'web-bundlr',
-  displayFilePath: 'hidden',
-  displayFunctionName: false,
-});
+import { log, WebBundlr, WebBundlrConfig } from './web-bundlr';
 
 const schema = {
   properties: {
@@ -35,23 +28,24 @@ const uploadFolder = async (config: WebBundlrConfig) => {
     const feeInBaseUnit = (await bundlr.getPrice(bytes)).toNumber();
     const base = bundlr.currencyConfig.base[1];
     const fee = feeInBaseUnit / base;
-    log.info(`Uploading ${bytes} bytes costs ${fee} ${currency}`);
     const balanceInBaseUnit = (await bundlr.getLoadedBalance()).toNumber();
     const balance = balanceInBaseUnit / base;
+    log.info(`Your Bundlr balance: ${balance} ${currency}`);
+    log.info(`Uploading ${bytes} bytes costs ${fee} ${currency}`);
     if (balanceInBaseUnit < feeInBaseUnit) {
       log.error(
         `${balance} ${currency} is not enough to upload ${bytes} bytes`
       );
       log.info(
-        `Please enter an amount in ${currency} to fund bundlr to upload or press Ctrl+C to exit`
+        `Please enter an amount in ${currency} to fund Bundlr to upload or press Ctrl+C to exit`
       );
       prompt.start();
       try {
         const { amount } = await prompt.get(schema);
-        log.info(`Funding bundlr with ${amount} ${currency}`);
+        log.info(`Funding Bundlr with ${amount} ${currency}`);
         await bundlr.fund(parseFloat(amount as string) * base);
         log.info(
-          `Funded with ${amount} ${currency} and current bundlr balance is ${
+          `Funded with ${amount} ${currency} and current Bundlr balance is ${
             (await bundlr.getLoadedBalance()).toNumber() / base
           } ${currency}`
         );
