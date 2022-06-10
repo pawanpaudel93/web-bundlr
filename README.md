@@ -11,7 +11,7 @@
 
 ## About <a name = "about"></a>
 
-Web Bundlr is a package to deploy web apps to areweave using Bundlr. Bundlr Network is a reliable multichain solution for Arweave.
+Web Bundlr is a package to deploy web apps to Arweave using Bundlr. Arweave is a protocol that allows you to store data permanently, sustainably, with a single upfront fee and Bundlr Network is a reliable multichain solution for Arweave which is building the future of data storage by bringing the speed and ease of web2 to web3 technology.
 Learn more about [Bundlr](https://bundlr.network/) and [Arweave](https://www.arweave.org/).
 
 > :warning: **Deploy using Devnet bundlr first to check everything is working and then deploy using production bundlr.**
