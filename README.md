@@ -14,8 +14,6 @@
 Web Bundlr is a package to deploy web apps to areweave using Bundlr. Bundlr Network is a reliable multichain solution for Arweave.
 Learn more about [Bundlr](https://bundlr.network/) and [Arweave](https://www.arweave.org/).
 
-> :warning: **Issue with deploying react apps on arweave is that apps are deployed and accessed using the basepath (Manifest ID) but due to the dynamic basepath we are unable to configure react app beforehand with the basepath and the url lacks basepath on the browser while visiting different routes and if reloaded it shows Not Found.**
-
 > :warning: **Deploy using Devnet bundlr first to check everything is working and then deploy using production bundlr.**
 
 
