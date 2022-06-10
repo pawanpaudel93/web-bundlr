@@ -2,71 +2,30 @@
 
 import fs from 'fs';
 import path from 'path';
-import { promisify } from 'util';
-
-import fastFolderSize from 'fast-folder-size';
-import prompt from 'prompt';
 
 import { log, WebBundlr, WebBundlrConfig } from './web-bundlr';
-
-const schema = {
-  properties: {
-    amount: {
-      pattern: /^[0-9]+(\.[0-9]+)?$/,
-      message: 'Please enter a valid amount',
-      required: true,
-    },
-  },
-};
 
 const uploadFolder = async (config: WebBundlrConfig) => {
   const bundlr = new WebBundlr(config);
   if (fs.existsSync(config.folderPath)) {
     try {
-      const fastFolderSizeAsync = promisify(fastFolderSize);
-      const bytes = await fastFolderSizeAsync(config.folderPath);
-      const currency = bundlr.currency.toUpperCase();
-      const feeInBaseUnit = (await bundlr.getPrice(bytes)).toNumber();
-      const base = bundlr.currencyConfig.base[1];
-      const fee = feeInBaseUnit / base;
+      const address = bundlr.address;
+      const ticker = bundlr.currencyConfig.ticker;
       const balanceInBaseUnit = (await bundlr.getLoadedBalance()).toNumber();
-      const balance = balanceInBaseUnit / base;
-      log.info(`Your Bundlr balance: ${balance} ${currency}`);
-      log.info(`Uploading ${bytes} bytes costs ${fee} ${currency}`);
-      if (balanceInBaseUnit < feeInBaseUnit) {
-        log.error(
-          `${balance} ${currency} is not enough to upload ${bytes} bytes`
-        );
-        log.info(
-          `Please enter an amount in ${currency} to fund Bundlr to upload or press Ctrl+C to exit`
-        );
-        prompt.start();
-        try {
-          const { amount } = await prompt.get(schema);
-          log.info(`Funding Bundlr with ${amount} ${currency}`);
-          await bundlr.fund(parseFloat(amount as string) * base);
-          log.info(
-            `Funded with ${amount} ${currency} and current Bundlr balance is ${
-              (await bundlr.getLoadedBalance()).toNumber() / base
-            } ${currency}`
-          );
-        } catch (error) {
-          if (error.message === 'canceled') {
-            log.info('Exiting');
-            return;
-          }
-          log.error(error);
-          return;
-        }
-      }
+      const balance = bundlr.utils.unitConverter(balanceInBaseUnit);
+      log.info(`Your Bundlr balance for address ${address}: ${balance} ${ticker}`);
       try {
         const result = await bundlr.uploadFolder();
         log.info(`Web app uploaded to https://arweave.net/${result}`);
       } catch (e) {
-        console.error(e);
+        if (e.message === 'canceled') {
+          log.info('Exiting');
+          return;
+        }
+        log.error(e?.message ?? e);
       }
     } catch (e) {
-      log.error(e);
+      log.error(e?.message ?? e);
     }
   } else {
     log.error(`Folder path ${config.folderPath} does not exist`);

@@ -41,6 +41,7 @@ So make the react build compatible on the areweave, we must use relative urls on
 ```
 homepage: "."
 ```
+
 Note for Nextjs Static Export: Add the configuration to the next.config file.
 Learn about it [here](https://nextjs.org/docs/advanced-features/static-html-export) for the supported and unsupported features in static html export.
 ```
@@ -77,7 +78,7 @@ Create a file named web-bundlr.config.js on the root folder of your project and 
 | ------------ | ------------ | ------------ |
 |  url | string  |  URL to the bundler Eg: Production => https://node1.bundlr.network, https://node2.bundlr.network Testnet => https://devnet.bundlr.network |
 |   currency	| string  |  Supported Currencies: arweave, ethereum, matic, bnb, fantom, solana, avalanche, boba, boba-eth, arbitrum, chainlink, kyve, near and algorand |
-|  wallet? |  any |  private key (in whatever form required)|
+|  wallet |  any |  private key (in whatever form required)|
 | config?  |  Object |   |
 | config.contractAddress?	  |  string |  contract address if its not a native currency |
 |  config.providerUrl?	 | string  |  Provide a RPC url or default public rpc url is used |
