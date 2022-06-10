@@ -7,7 +7,7 @@
 - [Usage](#usage)
 - [Contributing](#contributing)
 
-> :warning: NOTE: WIP
+> NOTE: WIP
 
 ## About <a name = "about"></a>
 
@@ -33,6 +33,8 @@ yarn add global web-bundlr
 In the initial phase for the project we will go through steps on how to use web-bundlr in your projects to push react and next.js web apps.
 
 ### React
+> <span style='color: green;'>RECOMMENDED</span>: Use HashRouter from react-router-dom in react apps. Check project [examples](https://github.com/pawanpaudel93/web-bundlr/tree/main/examples)
+
 Bundlr creates a arweave manifest file when uploading a folder. So the manifest contains the paths of the files and the transaction ID to resolve to for the given path. You can see more about it here [Arweave Manifest](https://github.com/ArweaveTeam/arweave/blob/master/doc/path-manifest-schema.md).
 
 So make the react build compatible on the areweave, we must use relative urls on the href instead of absolute ones so that the manifest can resolve the file path. For example href="/dist/index.js" must be replaced with either href="dist/index.js" or href="./dist/index.js". So to do so, we must add the following to package.json so the paths can resolve correctly.
