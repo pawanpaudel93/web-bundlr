@@ -5,10 +5,26 @@ import path from 'path';
 
 import { log, WebBundlr, WebBundlrConfig } from './web-bundlr';
 
+const checkConfig = (config: WebBundlrConfig) => {
+  if (!config.url && typeof config.url !== 'string') {
+    throw new Error('url must be a string in web-bundlr.config.js');
+  }
+  if (!config.currency && typeof config.currency !== 'string') {
+    throw new Error('currency must be a string in web-bundlr.config.js');
+  }
+  if (!config.folderPath && typeof config.folderPath !== 'string') {
+    throw new Error('folderPath must be a string in web-bundlr.config.js');
+  }
+  if (!config.wallet) {
+    throw new Error('wallet not specified in web-bundlr.config.js');
+  }
+};
+
 const uploadFolder = async (config: WebBundlrConfig) => {
-  const bundlr = new WebBundlr(config);
+  checkConfig(config);
   if (fs.existsSync(config.folderPath)) {
     try {
+      const bundlr = new WebBundlr(config);
       const address = bundlr.address;
       const ticker = bundlr.currencyConfig.ticker;
       const balanceInBaseUnit = (await bundlr.getLoadedBalance()).toNumber();

@@ -163,7 +163,7 @@ export default class WebUploader extends Uploader {
     logFunction(
       `Total amount of data: ${total} bytes over ${files.length} files - cost: ${price} ${
         this.currencyConfig.base[0]
-      } (${this.utils.unitConverter(price).toFixed()} ${this.currencyConfig.ticker})\n`
+      } (${this.utils.unitConverter(price).toFixed()} ${this.currencyConfig.ticker})`
     );
     const currentBalance = await this.utils.getBalance(this.currencyConfig.address);
     if (currentBalance.minus(price).lt(0)) {
