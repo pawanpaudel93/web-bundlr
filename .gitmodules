@@ -1,0 +1,3 @@
+[submodule "examples/nextjs-comments-with-polygon"]
+	path = examples/nextjs-comments-with-polygon
+	url = git@github.com:pawanpaudel93/comments-with-polygon.git
