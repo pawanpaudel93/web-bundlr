@@ -11,7 +11,7 @@
 
 ## About <a name = "about"></a>
 
-Web Bundlr is a package to deploy web apps to Arweave using Bundlr. Arweave is a protocol that allows you to store data permanently, sustainably, with a single upfront fee and Bundlr Network is a reliable multichain solution for Arweave which is building the future of data storage by bringing the speed and ease of web2 to web3 technology.
+Web Bundlr is a cli tool to deploy web apps to Arweave using Bundlr. Arweave is a protocol that allows you to store data permanently, sustainably, with a single upfront fee and Bundlr Network is a reliable multichain solution for Arweave which is building the future of data storage by bringing the speed and ease of web2 to web3 technology.
 Learn more about [Bundlr](https://bundlr.network/) and [Arweave](https://www.arweave.org/).
 
 > :warning: **Deploy using Devnet bundlr first to check everything is working and then deploy using production bundlr.**
@@ -30,7 +30,7 @@ yarn add global web-bundlr
 
 ## Usage <a name = "usage"></a>
 
-In the initial phase for the project we will go through steps on how to use web-bundlr in your projects to push react and next.js web apps.
+Lets go through steps on how to use web-bundlr in your projects to deploy apps.
 
 ### ReactJS & NextJS
 > ReactJS 
@@ -43,7 +43,7 @@ So make the react build compatible on the areweave, we must use relative urls on
 ```
 homepage: "."
 ```
-Now you can create the production build. For react run
+Now you can create the production build. Run the following command:
 ```
 npm run build
 
@@ -56,13 +56,13 @@ yarn build
 
 Learn about it [here](https://nextjs.org/docs/advanced-features/static-html-export) for the supported and unsupported features in static html export.
 
-Add the configuration to the next.config file.
+Add the configuration to the next.config.js or next.config.ts file.
 
 ```
 assetPrefix: "./",
 ```
 
-For nextjs html export add the following to package.json scripts.
+Add the following to package.json scripts.
 ```
 "export": "next build && next export"
 ```
@@ -79,13 +79,13 @@ If you are having problems regarding images in nextjs html export, see [here](ht
 ### VueJS & NuxtJS
 > VueJS
 
-<span style='color: green;'>RECOMMENDED</span>: Use router in hash mode in vue apps.
+>><span style='color: green;'>RECOMMENDED</span>: Use router in hash mode in vue apps.
 
 Modify vue.config.js or vue.config.ts to include the following config:
 ```
-	publicPath: "./" // default is /
+publicPath: "./" // default is /
 ```
-Now you can create the production build. For vue run
+Now, run the following command to create the production build.
 ```
 npm run build
 
@@ -96,18 +96,17 @@ yarn build
 
 > NuxtJS
 
-Modify nuxt.config.ts or nuxt.config.ts to include the following config:
+Modify nuxt.config.js or nuxt.config.ts to include the following config:
 
 ```
-	target: 'static', // default is 'server'
-	router: {
-		mode: 'hash',
-		base: './',
-	  },
-	
+target: 'static', // default is 'server'
+router: {
+  mode: 'hash',
+  base: './',
+  }
 ```
 
-For nuxtjs run: 
+Now, run the following command tp generate the static production build.
 
 ```
 npm run generate
@@ -146,7 +145,7 @@ const WebBundlrConfig = {
   wallet: "<private-key>",
   folderPath: "build",
   config: {
-    providerUrl: "https://polygon-mumbai.g.alchemy.com/v2/adadadadadsadadadadad",
+    providerUrl: "https://rpc.ankr.com/polygon_mumbai",
   },
 };
 
@@ -183,8 +182,8 @@ const WebBundlrConfig = {
   wallet: "<private-key>",
   folderPath: "build",
   config: {
-    providerUrl: "<rinkeby-rpc>",
-	contractAddress: "0x01BE23585060835E02B77ef475b0Cc51aA1e0709"
+    providerUrl: "https://rpc.ankr.com/eth_rinkeby",
+    contractAddress: "0x01BE23585060835E02B77ef475b0Cc51aA1e0709"
   },
 };
 
