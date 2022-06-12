@@ -1,6 +1,6 @@
 {
   "name": "web-bundlr",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Deploy Web apps to Arweave through Bundlr",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
@@ -35,7 +35,7 @@
     "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d build/docs",
     "version": "standard-version",
     "reset-hard": "git clean -dfx && git reset --hard && yarn",
-    "prepare-release": "run-s reset-hard test cov:check doc:html version doc:publish"
+    "prepare-release": "run-s reset-hard test doc:html version doc:publish"
   },
   "engines": {
     "node": ">=10"
