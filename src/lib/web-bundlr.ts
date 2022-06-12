@@ -82,7 +82,11 @@ export class WebBundlr extends Bundlr {
 
   private modifyHtml(path: string) {
     const html = fs.readFileSync(path, 'utf8');
-    const modifiedHtml = html.replace(/src="\/(.*?)"/g, 'src="./$1"').replace(/src='\/(.*?)'/g, "src='$1'");
+    const modifiedHtml = html
+      .replace(/src="\/(.*?)"/g, 'src="$1"')
+      .replace(/src='\/(.*?)'/g, "src='$1'")
+      .replace(/href="\/(.*?(css|js))"/g, 'href="$1"')
+      .replace(/href='\/(.*?(css|js))'/g, "href='$1'")
     fs.writeFileSync(path, modifiedHtml);
   }
 
