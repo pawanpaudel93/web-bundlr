@@ -32,22 +32,17 @@ yarn add global web-bundlr
 
 In the initial phase for the project we will go through steps on how to use web-bundlr in your projects to push react and next.js web apps.
 
-### React
-> <span style='color: green;'>RECOMMENDED</span>: Use HashRouter from react-router-dom in react apps. Check project [examples](https://github.com/pawanpaudel93/web-bundlr/tree/main/examples)
+### ReactJS & NextJS
+> ReactJS 
+>> <span style='color: green;'>RECOMMENDED</span>: Use HashRouter from react-router-dom in react apps. Check project [examples](https://github.com/pawanpaudel93/web-bundlr/tree/main/examples)
 
 Bundlr creates a arweave manifest file when uploading a folder. So the manifest contains the paths of the files and the transaction ID to resolve to for the given path. You can see more about it here [Arweave Manifest](https://github.com/ArweaveTeam/arweave/blob/master/doc/path-manifest-schema.md).
 
 So make the react build compatible on the areweave, we must use relative urls on the href instead of absolute ones so that the manifest can resolve the file path. For example href="/dist/index.js" must be replaced with either href="dist/index.js" or href="./dist/index.js". So to do so, we must add the following to package.json so the paths can resolve correctly.
+
 ```
 homepage: "."
 ```
-
-Note for Nextjs Static Export: Add the configuration to the next.config file.
-Learn about it [here](https://nextjs.org/docs/advanced-features/static-html-export) for the supported and unsupported features in static html export.
-```
-assetPrefix: "./",
-```
-
 Now you can create the production build. For react run
 ```
 npm run build
@@ -56,6 +51,17 @@ OR
 
 yarn build
 ```
+
+> Nextjs Static Export:
+
+Learn about it [here](https://nextjs.org/docs/advanced-features/static-html-export) for the supported and unsupported features in static html export.
+
+Add the configuration to the next.config file.
+
+```
+assetPrefix: "./",
+```
+
 For nextjs html export add the following to package.json scripts.
 ```
 "export": "next build && next export"
@@ -70,7 +76,49 @@ yarn export
 ```
 If you are having problems regarding images in nextjs html export, see [here](https://stackoverflow.com/questions/65487914/error-image-optimization-using-next-js-default-loader-is-not-compatible-with-n).
 
-And now you have to add config file for web-bundlr to upload the production build to arweave.
+### VueJS & NuxtJS
+> VueJS
+
+<span style='color: green;'>RECOMMENDED</span>: Use router in hash mode in vue apps.
+
+Modify vue.config.js or vue.config.ts to include the following config:
+```
+	publicPath: "./" // default is /
+```
+Now you can create the production build. For vue run
+```
+npm run build
+
+OR
+
+yarn build
+```
+
+> NuxtJS
+
+Modify nuxt.config.ts or nuxt.config.ts to include the following config:
+
+```
+	target: 'static', // default is 'server'
+	router: {
+		mode: 'hash',
+		base: './',
+	  },
+	
+```
+
+For nuxtjs run: 
+
+```
+npm run generate
+
+OR
+
+yarn generate
+```
+Read more about going full static mode in nuxtjs [Going Full Static (https://nuxtjs.org/announcements/going-full-static/)
+
+> And now you have to add config file for web-bundlr to upload the production build to arweave.
 
 Create a file named web-bundlr.config.js on the root folder of your project and add the config as:
 
@@ -86,6 +134,7 @@ Create a file named web-bundlr.config.js on the root folder of your project and 
 |folderPath	|	string	|	relative build folder path from project root folder Eg: 'build' ,'./build', 'out'	|
 
 Example of web-bundlr.config.js for different currency can be:
+
 For Polygon (MATIC) on testnet.
 
 ```
@@ -122,7 +171,9 @@ const WebBundlrConfig = {
 module.exports = WebBundlrConfig;
 ```
 
-For ERC20 Tokens: For example chainlink on Rinkeby testnet
+For ERC20 Tokens: 
+
+For example chainlink on Rinkeby testnet
 ```
 /** @type {import('web-bundlr').WebBundlrConfig} */
 
