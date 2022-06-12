@@ -82,7 +82,7 @@
 				<a href="#about-" id="about-" style="color: inherit; text-decoration: none;">
 					<h2>About <a name = "about"></a></h2>
 				</a>
-				<p>Web Bundlr is a package to deploy web apps to areweave using Bundlr. Bundlr Network is a reliable multichain solution for Arweave.
+				<p>Web Bundlr is a package to deploy web apps to Arweave using Bundlr. Arweave is a protocol that allows you to store data permanently, sustainably, with a single upfront fee and Bundlr Network is a reliable multichain solution for Arweave which is building the future of data storage by bringing the speed and ease of web2 to web3 technology.
 				Learn more about <a href="https://bundlr.network/">Bundlr</a> and <a href="https://www.arweave.org/">Arweave</a>.</p>
 				<blockquote>
 					<p>:warning: <strong>Deploy using Devnet bundlr first to check everything is working and then deploy using production bundlr.</strong></p>
@@ -101,19 +101,18 @@ yarn <span class="hljs-keyword">add </span>global web-<span class="hljs-keyword"
 					<h2>Usage <a name = "usage"></a></h2>
 				</a>
 				<p>In the initial phase for the project we will go through steps on how to use web-bundlr in your projects to push react and next.js web apps.</p>
-				<a href="#react" id="react" style="color: inherit; text-decoration: none;">
-					<h3>React</h3>
+				<a href="#reactjs-amp-nextjs" id="reactjs-amp-nextjs" style="color: inherit; text-decoration: none;">
+					<h3>ReactJS &amp; NextJS</h3>
 				</a>
 				<blockquote>
-					<p><span style='color: green;'>RECOMMENDED</span>: Use HashRouter from react-router-dom in react apps. Check project <a href="https://github.com/pawanpaudel93/web-bundlr/tree/main/examples">examples</a></p>
+					<p>ReactJS </p>
+					<blockquote>
+						<p><span style='color: green;'>RECOMMENDED</span>: Use HashRouter from react-router-dom in react apps. Check project <a href="https://github.com/pawanpaudel93/web-bundlr/tree/main/examples">examples</a></p>
+					</blockquote>
 				</blockquote>
 				<p>Bundlr creates a arweave manifest file when uploading a folder. So the manifest contains the paths of the files and the transaction ID to resolve to for the given path. You can see more about it here <a href="https://github.com/ArweaveTeam/arweave/blob/master/doc/path-manifest-schema.md">Arweave Manifest</a>.</p>
 				<p>So make the react build compatible on the areweave, we must use relative urls on the href instead of absolute ones so that the manifest can resolve the file path. For example href=&quot;/dist/index.js&quot; must be replaced with either href=&quot;dist/index.js&quot; or href=&quot;./dist/index.js&quot;. So to do so, we must add the following to package.json so the paths can resolve correctly.</p>
 				<pre><code><span class="hljs-symbol">homepage:</span> <span class="hljs-string">&quot;.&quot;</span>
-</code></pre>
-				<p>Note for Nextjs Static Export: Add the configuration to the next.config file.
-				Learn about it <a href="https://nextjs.org/docs/advanced-features/static-html-export">here</a> for the supported and unsupported features in static html export.</p>
-				<pre><code><span class="hljs-symbol">assetPrefix:</span> <span class="hljs-string">&quot;./&quot;</span>,
 </code></pre>
 				<p>Now you can create the production build. For react run</p>
 				<pre><code>npm run <span class="hljs-keyword">build
@@ -121,6 +120,13 @@ yarn <span class="hljs-keyword">add </span>global web-<span class="hljs-keyword"
 <span class="hljs-keyword">OR
 </span>
 yarn <span class="hljs-keyword">build</span>
+</code></pre>
+				<blockquote>
+					<p>Nextjs Static Export:</p>
+				</blockquote>
+				<p>Learn about it <a href="https://nextjs.org/docs/advanced-features/static-html-export">here</a> for the supported and unsupported features in static html export.</p>
+				<p>Add the configuration to the next.config file.</p>
+				<pre><code><span class="hljs-symbol">assetPrefix:</span> <span class="hljs-string">&quot;./&quot;</span>,
 </code></pre>
 				<p>For nextjs html export add the following to package.json scripts.</p>
 				<pre><code><span class="hljs-string">&quot;export&quot;</span>: <span class="hljs-string">&quot;next build &amp;&amp; next export&quot;</span>
@@ -133,7 +139,45 @@ yarn <span class="hljs-keyword">build</span>
 <span class="hljs-title">yarn</span> ex<span class="hljs-keyword">port</span>
 </code></pre>
 				<p>If you are having problems regarding images in nextjs html export, see <a href="https://stackoverflow.com/questions/65487914/error-image-optimization-using-next-js-default-loader-is-not-compatible-with-n">here</a>.</p>
-				<p>And now you have to add config file for web-bundlr to upload the production build to arweave.</p>
+				<a href="#vuejs-amp-nuxtjs" id="vuejs-amp-nuxtjs" style="color: inherit; text-decoration: none;">
+					<h3>VueJS &amp; NuxtJS</h3>
+				</a>
+				<blockquote>
+					<p>VueJS</p>
+				</blockquote>
+				<p><span style='color: green;'>RECOMMENDED</span>: Use router in hash mode in vue apps.</p>
+				<p>Modify vue.config.js or vue.config.ts to include the following config:</p>
+				<pre><code>    publicPath: <span class="hljs-string">&quot;./&quot;</span> <span class="hljs-regexp">//</span> default is /
+</code></pre>
+				<p>Now you can create the production build. For vue run</p>
+				<pre><code>npm run <span class="hljs-keyword">build
+</span>
+<span class="hljs-keyword">OR
+</span>
+yarn <span class="hljs-keyword">build</span>
+</code></pre>
+				<blockquote>
+					<p>NuxtJS</p>
+				</blockquote>
+				<p>Modify nuxt.config.ts or nuxt.config.ts to include the following config:</p>
+				<pre><code>    targe<span class="hljs-variable">t:</span> <span class="hljs-string">&#x27;static&#x27;</span>, // default <span class="hljs-keyword">is</span> <span class="hljs-string">&#x27;server&#x27;</span>
+    router: {
+        <span class="hljs-keyword">mode</span>: <span class="hljs-string">&#x27;hash&#x27;</span>,
+        base: <span class="hljs-string">&#x27;./&#x27;</span>,
+      },
+    
+</code></pre>
+				<p>For nuxtjs run: </p>
+				<pre><code>npm run <span class="hljs-keyword">generate</span>
+
+OR
+
+yarn <span class="hljs-keyword">generate</span>
+</code></pre>
+				<p>Read more about going full static mode in nuxtjs [Going Full Static (<a href="https://nuxtjs.org/announcements/going-full-static/">https://nuxtjs.org/announcements/going-full-static/</a>)</p>
+				<blockquote>
+					<p>And now you have to add config file for web-bundlr to upload the production build to arweave.</p>
+				</blockquote>
 				<p>Create a file named web-bundlr.config.js on the root folder of your project and add the config as:</p>
 				<table>
 					<thead>
@@ -184,8 +228,8 @@ yarn <span class="hljs-keyword">build</span>
 							<td>relative build folder path from project root folder Eg: &#39;build&#39; ,&#39;./build&#39;, &#39;out&#39;</td>
 						</tr>
 				</tbody></table>
-				<p>Example of web-bundlr.config.js for different currency can be:
-				For Polygon (MATIC) on testnet.</p>
+				<p>Example of web-bundlr.config.js for different currency can be:</p>
+				<p>For Polygon (MATIC) on testnet.</p>
 				<pre><code><span class="hljs-comment">/** @type {import(&#x27;web-bundlr&#x27;).WebBundlrConfig} */</span>
 
 const WebBundlrConfig = {
@@ -215,7 +259,8 @@ const WebBundlrConfig = {
 
 module.exports = WebBundlrConfig;
 </code></pre>
-				<p>For ERC20 Tokens: For example chainlink on Rinkeby testnet</p>
+				<p>For ERC20 Tokens: </p>
+				<p>For example chainlink on Rinkeby testnet</p>
 				<pre><code><span class="hljs-comment">/** @type {import(&#x27;web-bundlr&#x27;).WebBundlrConfig} */</span>
 
 const WebBundlrConfig = {
@@ -274,6 +319,9 @@ module.exports = WebBundlrConfig;
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#log" class="tsd-kind-icon">log</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#checkconfig" class="tsd-kind-icon">check<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#main" class="tsd-kind-icon">main</a>
