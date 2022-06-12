@@ -4,3 +4,6 @@
 [submodule "examples/vuejs-longify-tiktok"]
 	path = examples/vuejs-longify-tiktok
 	url = git@github.com:pawanpaudel93/longify-tiktok.git
+[submodule "examples/nuxtjs-nft-marketplace"]
+	path = examples/nuxtjs-nft-marketplace
+	url = git@github.com:pawanpaudel93/nft-marketplace.git
