@@ -51,8 +51,12 @@ const uploadFolder = async (config: WebBundlrConfig) => {
 const main = async () => {
   const configPath = path.join(process.cwd(), 'web-bundlr.config.js');
   if (fs.existsSync(configPath)) {
-    const config: WebBundlrConfig = await require(configPath);
-    await uploadFolder(config);
+    try {
+      const config: WebBundlrConfig = await require(configPath);
+      await uploadFolder(config);
+    } catch (e) {
+      log.error(e?.message ?? e);
+    }
   } else {
     log.error('No web-bundlr.config.js found in current directory');
   }

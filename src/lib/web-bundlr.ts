@@ -86,7 +86,7 @@ export class WebBundlr extends Bundlr {
       .replace(/src="\/(.*?)"/g, 'src="$1"')
       .replace(/src='\/(.*?)'/g, "src='$1'")
       .replace(/href="\/(.*?(css|js))"/g, 'href="$1"')
-      .replace(/href='\/(.*?(css|js))'/g, "href='$1'")
+      .replace(/href='\/(.*?(css|js))'/g, "href='$1'");
     fs.writeFileSync(path, modifiedHtml);
   }
 
