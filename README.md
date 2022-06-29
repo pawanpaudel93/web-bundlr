@@ -117,6 +117,28 @@ yarn generate
 ```
 Read more about going full static mode in nuxtjs [Going Full Static (https://nuxtjs.org/announcements/going-full-static/)
 
+### ViteJS
+
+Add the following to package.json so the paths can resolve correctly.
+
+```
+homepage: "."
+```
+
+Modify vite.config.js or vite.config.ts to include the following config:
+```
+base: "./" // default is /
+```
+Now, run the following command to create the production build.
+```
+npm run build
+```
+OR
+```
+yarn build
+```
+Examples of react, vue and svelte using vite is included in the examples folder.
+
 > And now you have to add config file for web-bundlr to upload the production build to arweave.
 
 Create a file named web-bundlr.config.js or web-bundlr.config.cjs on the root folder of your project and add the config as:
