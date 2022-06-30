@@ -82,7 +82,7 @@
 				<a href="#about-" id="about-" style="color: inherit; text-decoration: none;">
 					<h2>About <a name = "about"></a></h2>
 				</a>
-				<p>Web Bundlr is a package to deploy web apps to Arweave using Bundlr. Arweave is a protocol that allows you to store data permanently, sustainably, with a single upfront fee and Bundlr Network is a reliable multichain solution for Arweave which is building the future of data storage by bringing the speed and ease of web2 to web3 technology.
+				<p>Web Bundlr is a cli tool to deploy web apps to Arweave using Bundlr. Arweave is a protocol that allows you to store data permanently, sustainably, with a single upfront fee and Bundlr Network is a reliable multichain solution for Arweave which is building the future of data storage by bringing the speed and ease of web2 to web3 technology.
 				Learn more about <a href="https://bundlr.network/">Bundlr</a> and <a href="https://www.arweave.org/">Arweave</a>.</p>
 				<blockquote>
 					<p>:warning: <strong>Deploy using Devnet bundlr first to check everything is working and then deploy using production bundlr.</strong></p>
@@ -100,7 +100,7 @@ yarn <span class="hljs-keyword">add </span>global web-<span class="hljs-keyword"
 				<a href="#usage-" id="usage-" style="color: inherit; text-decoration: none;">
 					<h2>Usage <a name = "usage"></a></h2>
 				</a>
-				<p>In the initial phase for the project we will go through steps on how to use web-bundlr in your projects to push react and next.js web apps.</p>
+				<p>Lets go through steps on how to use web-bundlr in your projects to deploy apps.</p>
 				<a href="#reactjs-amp-nextjs" id="reactjs-amp-nextjs" style="color: inherit; text-decoration: none;">
 					<h3>ReactJS &amp; NextJS</h3>
 				</a>
@@ -114,7 +114,7 @@ yarn <span class="hljs-keyword">add </span>global web-<span class="hljs-keyword"
 				<p>So make the react build compatible on the areweave, we must use relative urls on the href instead of absolute ones so that the manifest can resolve the file path. For example href=&quot;/dist/index.js&quot; must be replaced with either href=&quot;dist/index.js&quot; or href=&quot;./dist/index.js&quot;. So to do so, we must add the following to package.json so the paths can resolve correctly.</p>
 				<pre><code><span class="hljs-symbol">homepage:</span> <span class="hljs-string">&quot;.&quot;</span>
 </code></pre>
-				<p>Now you can create the production build. For react run</p>
+				<p>Now you can create the production build. Run the following command:</p>
 				<pre><code>npm run <span class="hljs-keyword">build
 </span>
 <span class="hljs-keyword">OR
@@ -125,10 +125,10 @@ yarn <span class="hljs-keyword">build</span>
 					<p>Nextjs Static Export:</p>
 				</blockquote>
 				<p>Learn about it <a href="https://nextjs.org/docs/advanced-features/static-html-export">here</a> for the supported and unsupported features in static html export.</p>
-				<p>Add the configuration to the next.config file.</p>
+				<p>Add the configuration to the next.config.js or next.config.ts file.</p>
 				<pre><code><span class="hljs-symbol">assetPrefix:</span> <span class="hljs-string">&quot;./&quot;</span>,
 </code></pre>
-				<p>For nextjs html export add the following to package.json scripts.</p>
+				<p>Add the following to package.json scripts.</p>
 				<pre><code><span class="hljs-string">&quot;export&quot;</span>: <span class="hljs-string">&quot;next build &amp;&amp; next export&quot;</span>
 </code></pre>
 				<p>And run: </p>
@@ -145,11 +145,15 @@ yarn <span class="hljs-keyword">build</span>
 				<blockquote>
 					<p>VueJS</p>
 				</blockquote>
-				<p><span style='color: green;'>RECOMMENDED</span>: Use router in hash mode in vue apps.</p>
+				<blockquote>
+					<blockquote>
+						<p><span style='color: green;'>RECOMMENDED</span>: Use router in hash mode in vue apps.</p>
+					</blockquote>
+				</blockquote>
 				<p>Modify vue.config.js or vue.config.ts to include the following config:</p>
-				<pre><code>    publicPath: <span class="hljs-string">&quot;./&quot;</span> <span class="hljs-regexp">//</span> default is /
+				<pre><code>publicPath: <span class="hljs-string">&quot;./&quot;</span> <span class="hljs-regexp">//</span> default is /
 </code></pre>
-				<p>Now you can create the production build. For vue run</p>
+				<p>Now, run the following command to create the production build.</p>
 				<pre><code>npm run <span class="hljs-keyword">build
 </span>
 <span class="hljs-keyword">OR
@@ -159,15 +163,14 @@ yarn <span class="hljs-keyword">build</span>
 				<blockquote>
 					<p>NuxtJS</p>
 				</blockquote>
-				<p>Modify nuxt.config.ts or nuxt.config.ts to include the following config:</p>
-				<pre><code>    targe<span class="hljs-variable">t:</span> <span class="hljs-string">&#x27;static&#x27;</span>, // default <span class="hljs-keyword">is</span> <span class="hljs-string">&#x27;server&#x27;</span>
-    router: {
-        <span class="hljs-keyword">mode</span>: <span class="hljs-string">&#x27;hash&#x27;</span>,
-        base: <span class="hljs-string">&#x27;./&#x27;</span>,
-      },
-    
+				<p>Modify nuxt.config.js or nuxt.config.ts to include the following config:</p>
+				<pre><code>targe<span class="hljs-variable">t:</span> <span class="hljs-string">&#x27;static&#x27;</span>, // default <span class="hljs-keyword">is</span> <span class="hljs-string">&#x27;server&#x27;</span>
+router: {
+  <span class="hljs-keyword">mode</span>: <span class="hljs-string">&#x27;hash&#x27;</span>,
+  base: <span class="hljs-string">&#x27;./&#x27;</span>,
+  }
 </code></pre>
-				<p>For nuxtjs run: </p>
+				<p>Now, run the following command tp generate the static production build.</p>
 				<pre><code>npm run <span class="hljs-keyword">generate</span>
 
 OR
@@ -175,10 +178,26 @@ OR
 yarn <span class="hljs-keyword">generate</span>
 </code></pre>
 				<p>Read more about going full static mode in nuxtjs [Going Full Static (<a href="https://nuxtjs.org/announcements/going-full-static/">https://nuxtjs.org/announcements/going-full-static/</a>)</p>
+				<a href="#vitejs" id="vitejs" style="color: inherit; text-decoration: none;">
+					<h3>ViteJS</h3>
+				</a>
+				<p>Add the following to package.json so the paths can resolve correctly.</p>
+				<pre><code><span class="hljs-symbol">homepage:</span> <span class="hljs-string">&quot;.&quot;</span>
+</code></pre>
+				<p>Modify vite.config.js or vite.config.ts to include the following config:</p>
+				<pre><code>base: <span class="hljs-string">&quot;./&quot;</span> <span class="hljs-regexp">//</span> default is /
+</code></pre>
+				<p>Now, run the following command to create the production build.</p>
+				<pre><code>npm <span class="hljs-builtin-name">run</span> build
+</code></pre>
+				<p>OR</p>
+				<pre><code><span class="hljs-attribute">yarn build</span>
+</code></pre>
+				<p>Examples of react, vue and svelte using vite is included in the examples folder.</p>
 				<blockquote>
 					<p>And now you have to add config file for web-bundlr to upload the production build to arweave.</p>
 				</blockquote>
-				<p>Create a file named web-bundlr.config.js on the root folder of your project and add the config as:</p>
+				<p>Create a file named web-bundlr.config.js or web-bundlr.config.cjs on the root folder of your project and add the config as:</p>
 				<table>
 					<thead>
 						<tr>
@@ -238,7 +257,7 @@ const WebBundlrConfig = {
 <span class="hljs-symbol">  wallet:</span> <span class="hljs-string">&quot;&lt;private-key&gt;&quot;</span>,
 <span class="hljs-symbol">  folderPath:</span> <span class="hljs-string">&quot;build&quot;</span>,
 <span class="hljs-symbol">  config:</span> {
-<span class="hljs-symbol">    providerUrl:</span> <span class="hljs-string">&quot;https://polygon-mumbai.g.alchemy.com/v2/adadadadadsadadadadad&quot;</span>,
+<span class="hljs-symbol">    providerUrl:</span> <span class="hljs-string">&quot;https://rpc.ankr.com/polygon_mumbai&quot;</span>,
   },
 };
 
@@ -269,7 +288,7 @@ const WebBundlrConfig = {
 <span class="hljs-symbol">  wallet:</span> <span class="hljs-string">&quot;&lt;private-key&gt;&quot;</span>,
 <span class="hljs-symbol">  folderPath:</span> <span class="hljs-string">&quot;build&quot;</span>,
 <span class="hljs-symbol">  config:</span> {
-<span class="hljs-symbol">    providerUrl:</span> <span class="hljs-string">&quot;&lt;rinkeby-rpc&gt;&quot;</span>,
+<span class="hljs-symbol">    providerUrl:</span> <span class="hljs-string">&quot;https://rpc.ankr.com/eth_rinkeby&quot;</span>,
 <span class="hljs-symbol">    contractAddress:</span> <span class="hljs-string">&quot;0x01BE23585060835E02B77ef475b0Cc51aA1e0709&quot;</span>
   },
 };
