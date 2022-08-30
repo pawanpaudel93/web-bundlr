@@ -20,6 +20,7 @@ import { WebBundlr } from './web-bundlr';
 const schema = {
   properties: {
     amount: {
+      description: '',
       pattern: /^[0-9]+(\.[0-9]+)?$/,
       message: 'Please enter a valid amount',
       required: true,
@@ -173,7 +174,7 @@ export default class WebUploader extends Uploader {
       const ticker = this.currencyConfig.ticker;
       const base = this.currencyConfig.base[1];
       logFunction(`Insufficient fund !!!.`);
-      logFunction(`Please enter an amount in ${ticker} to fund Bundlr to upload or press Ctrl+C to exit`);
+      schema.properties.amount.description = `Please enter an amount in ${ticker} to fund Bundlr to upload or press Ctrl+C to exit`;
       prompt.start();
       const { amount } = await prompt.get(schema);
       logFunction(`Funding Bundlr with ${amount} ${ticker}`);
