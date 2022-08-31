@@ -1,1 +1,1 @@
-export { WebBundlrConfig } from './helpers/web-bundlr';
+export { WebBundlrConfig } from './lib/web-bundlr';

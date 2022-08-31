@@ -10,7 +10,7 @@ import glob from 'glob';
 import createJITI from 'jiti';
 import { exec } from 'promisify-child-process';
 
-import { log, WebBundlr, WebBundlrConfig } from './helpers/web-bundlr';
+import { log, WebBundlr, WebBundlrConfig } from './lib/web-bundlr';
 
 const jiti = createJITI(__filename);
 

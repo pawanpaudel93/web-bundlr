@@ -41,7 +41,7 @@
     "types": ["node"],
     "typeRoots": ["node_modules/@types", "src/types"]
   },
-  "include": ["src/**/*.ts", "src/helpers/web-bundlr.spec.ts"],
+  "include": ["src/**/*.ts", "src/lib/web-bundlr.spec.ts"],
   "exclude": ["node_modules/**"],
   "compileOnSave": false
 }

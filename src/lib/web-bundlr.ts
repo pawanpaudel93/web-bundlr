@@ -89,14 +89,14 @@ export class WebBundlr extends Bundlr {
     if (
       /src="\/(.*?)"/g.test(html) ||
       /src='\/(.*?)'/g.test(html) ||
-      /href="\/(.*?)"/g.test(html) ||
-      /href='\/(.*?)'/g.test(html)
+      /href="\/(.*?\..*)"/g.test(html) ||
+      /href='\/(.*?\..*)'/g.test(html)
     ) {
       const modifiedHtml = html
         .replace(/src="\/(.*?)"/g, 'src="$1"')
         .replace(/src='\/(.*?)'/g, "src='$1'")
-        .replace(/href="\/(.*?)"/g, 'href="$1"')
-        .replace(/href='\/(.*?)'/g, "href='$1'");
+        .replace(/href="\/(.*?\..*)"/g, 'href="$1"')
+        .replace(/href='\/(.*?\..*)'/g, "href='$1'");
       fs.writeFileSync(path, modifiedHtml);
     }
   }
