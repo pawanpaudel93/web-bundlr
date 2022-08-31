@@ -17,7 +17,7 @@ export type WebBundlrConfig = {
   currency: string;
   wallet: any;
   folderPath?: string;
-  autoBuild?: boolean;
+  buildApp?: boolean;
   appType?: string;
   config?: {
     timeout?: number;
