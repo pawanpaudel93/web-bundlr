@@ -75,7 +75,13 @@ Examples of react, vue and svelte using vite is included in the examples folder.
 
 > And now you have to add config file for web-bundlr to upload the production build to arweave.
 
-Create a file named web-bundlr.config.js or web-bundlr.config.cjs on the root folder of your project and add the config as:
+Run this command to add configuration file for web-bundlr.
+
+```
+web-bundlr init
+```
+
+Now modify the configuration file (web-bundlr.config.js) as per your need from the following:
 
 |  Name | Type   | Description   |
 | ------------ | ------------ | ------------ |
@@ -147,7 +153,7 @@ export default WebBundlrConfig;
 After the configuration, run web-bundlr command from the root folder of the project.
 
 ```
-web-bundlr
+web-bundlr deploy
 ```
 You have to fund the bundlr with the currency you have configured. The cli will show how much bytes is going to be uploaded and how much amount in configured currency is required to perform the upload and it will ask for funding if the loaded balance is not sufficient.
 
