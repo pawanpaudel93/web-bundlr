@@ -28,10 +28,8 @@ const WebBundlrConfig = {
   },
 };
 
-module.exports = WebBundlrConfig;
+export default WebBundlrConfig;
 `;
-
-const defaultConfigTs = defaultConfigJs.replace('module.exports =', 'export default');
 
 const checkConfig = (config: WebBundlrConfig) => {
   const errors: string[] = [];
@@ -132,7 +130,7 @@ const uploadFolder = async (config: WebBundlrConfig) => {
   }
 };
 
-const init = async (options) => {
+const init = async () => {
   const configFiles = glob.sync(path.join(process.cwd(), 'web-bundlr.config.{js,ts}'));
   if (configFiles.length > 0) {
     log.error('Config file already exists.');
@@ -156,17 +154,10 @@ const init = async (options) => {
     const appConfig = getConfig('vite.config.{js,ts}');
     folderPath = appConfig?.build?.outDir ? appConfig?.build?.outDir : 'dist';
   }
-  if (options.ts) {
-    defaultConfig = defaultConfigTs
-      .replace('FOLDER_PATH', folderPath)
-      .replace('APP_TYPE', appType === 'create-react-app' ? 'react' : appType);
-    configFileName = 'web-bundlr.config.ts';
-  } else {
-    defaultConfig = defaultConfigJs
-      .replace('FOLDER_PATH', folderPath)
-      .replace('APP_TYPE', appType === 'create-react-app' ? 'react' : appType);
-    configFileName = 'web-bundlr.config.js';
-  }
+  defaultConfig = defaultConfigJs
+    .replace('FOLDER_PATH', folderPath)
+    .replace('APP_TYPE', appType === 'create-react-app' ? 'react' : appType);
+  configFileName = 'web-bundlr.config.js';
   await fsPromises.writeFile(configFileName, defaultConfig);
   log.info(`Config file ${configFileName} successfully created.`);
 };
@@ -192,12 +183,8 @@ const program = new Command();
 program
   .name('web-bundlr')
   .description('A CLI tool to deploy web apps to Arweave using Bundlr Network')
-  .version('1.0.3');
+  .version('2.0.0');
 
-program
-  .command('init')
-  .option('--ts', 'Web-bundlr Typescript configuration')
-  .description('Initialize web-bundlr configuration.')
-  .action(init);
+program.command('init').description('Initialize web-bundlr configuration.').action(init);
 program.command('deploy').description('Deploy web app to Arweave.').action(deploy);
 program.parse(process.argv);

@@ -105,7 +105,7 @@ const WebBundlrConfig = {
   },
 };
 
-module.exports = WebBundlrConfig;
+export default WebBundlrConfig;
 ```
 
 For Solana:
@@ -122,7 +122,7 @@ const WebBundlrConfig = {
   },
 };
 
-module.exports = WebBundlrConfig;
+export default WebBundlrConfig;
 ```
 
 For ERC20 Tokens: 
@@ -141,7 +141,7 @@ const WebBundlrConfig = {
   },
 };
 
-module.exports = WebBundlrConfig;
+export default WebBundlrConfig;
 ```
 
 After the configuration, run web-bundlr command from the root folder of the project.
