@@ -17,8 +17,7 @@ export type WebBundlrConfig = {
   currency: string;
   wallet: any;
   folderPath?: string;
-  buildApp?: boolean;
-  appType?: string;
+  appType?: 'react' | 'next' | 'vue' | 'nuxt' | 'vite' | '';
   config?: {
     timeout?: number;
     providerUrl?: string;
