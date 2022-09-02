@@ -107,6 +107,9 @@ const buildConfig = async (config: WebBundlrConfig) => {
 
 const buildApp = async (config: WebBundlrConfig) => {
   if (config.appType) {
+    if (config.appType === 'react') {
+      process.env.PUBLIC_URL = './';
+    }
     await runCommand(buildCommands[config.appType]);
   }
 };
