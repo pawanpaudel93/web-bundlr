@@ -115,6 +115,8 @@ const WebBundlrConfig = {
   url: "https://devnet.bundlr.network",
   currency: "matic"
   wallet: "<private-key>",
+  folderPath: "build",
+  appType: "react",
   config: {
     providerUrl: "https://rpc.ankr.com/polygon_mumbai",
   },
@@ -132,6 +134,8 @@ const WebBundlrConfig = {
   url: "https://devnet.bundlr.network",
   currency: "solana"
   wallet: "<private-key>",
+  folderPath: "out",
+  appType: "next",
   config: {
     providerUrl: "https://api.devnet.solana.com",
   },
@@ -150,6 +154,8 @@ const WebBundlrConfig = {
   url: "https://devnet.bundlr.network",
   currency: "chainlink"
   wallet: "<private-key>",
+  folderPath: "dist",
+  appType: "vue",
   config: {
     providerUrl: "https://rpc.ankr.com/eth_rinkeby",
     contractAddress: "0x01BE23585060835E02B77ef475b0Cc51aA1e0709"
