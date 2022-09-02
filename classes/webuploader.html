@@ -138,7 +138,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Uploader.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/web-bundlr/blob/0565331/src/lib/upload.ts#L30">src/lib/upload.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/web-bundlr/blob/bd5916d/src/lib/upload.ts#L32">src/lib/upload.ts:32</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -455,13 +455,13 @@
 					<a name="generatemanifestfromcsv" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> generate<wbr>Manifest<wbr>From<wbr>Csv</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">generate<wbr>Manifest<wbr>From<wbr>Csv<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, nowRemoved<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">&gt;</span>, indexFile<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Manifest<wbr>From<wbr>Csv<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, nowRemoved<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">&gt;</span>, indexFile<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/web-bundlr/blob/0565331/src/lib/upload.ts#L279">src/lib/upload.ts:279</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/web-bundlr/blob/bd5916d/src/lib/upload.ts#L287">src/lib/upload.ts:287</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -476,6 +476,9 @@
 									<div class="tsd-comment tsd-typography">
 										<p>base path of the upload</p>
 									</div>
+								</li>
+								<li>
+									<h5>appType: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> nowRemoved: <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">&gt;</span></h5>
@@ -503,7 +506,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Uploader.processItem</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/web-bundlr/blob/0565331/src/lib/upload.ts#L243">src/lib/upload.ts:243</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/web-bundlr/blob/bd5916d/src/lib/upload.ts#L251">src/lib/upload.ts:251</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -599,7 +602,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/web-bundlr/blob/0565331/src/lib/upload.ts#L40">src/lib/upload.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/web-bundlr/blob/bd5916d/src/lib/upload.ts#L42">src/lib/upload.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -625,13 +628,13 @@
 					<a name="uploadfolder" class="tsd-anchor"></a>
 					<h3>upload<wbr>Folder</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">upload<wbr>Folder<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, bundlr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Bundlr</span>, indexFile<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, batchSize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, keepDeleted<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, logFunction<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>log<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">upload<wbr>Folder<span class="tsd-signature-symbol">(</span>bundlr<span class="tsd-signature-symbol">: </span><a href="webbundlr.html" class="tsd-signature-type">WebBundlr</a>, indexFile<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, batchSize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, keepDeleted<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, logFunction<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>log<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/web-bundlr/blob/0565331/src/lib/upload.ts#L81">src/lib/upload.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/web-bundlr/blob/bd5916d/src/lib/upload.ts#L83">src/lib/upload.ts:83</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -642,13 +645,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>path to the folder to be uploaded</p>
-									</div>
-								</li>
-								<li>
-									<h5>bundlr: <span class="tsd-signature-type">Bundlr</span></h5>
+									<h5>bundlr: <a href="webbundlr.html" class="tsd-signature-type">WebBundlr</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>bundlr instance</p>
 									</div>
@@ -710,7 +707,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pawanpaudel93/web-bundlr/blob/0565331/src/lib/upload.ts#L62">src/lib/upload.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/pawanpaudel93/web-bundlr/blob/bd5916d/src/lib/upload.ts#L64">src/lib/upload.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -808,16 +805,46 @@
 						<a href="../globals.html#webbundlrconfig" class="tsd-kind-icon">Web<wbr>Bundlr<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-variable">
+						<a href="../globals.html#defaultconfig" class="tsd-kind-icon">default<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#jiti" class="tsd-kind-icon">jiti</a>
+					</li>
+					<li class=" tsd-kind-variable">
 						<a href="../globals.html#log" class="tsd-kind-icon">log</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#program" class="tsd-kind-icon">program</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#buildapp" class="tsd-kind-icon">build<wbr>App</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#buildconfig" class="tsd-kind-icon">build<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#checkconfig" class="tsd-kind-icon">check<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="../globals.html#main" class="tsd-kind-icon">main</a>
+						<a href="../globals.html#deploy" class="tsd-kind-icon">deploy</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#detectframework" class="tsd-kind-icon">detect<wbr>Framework</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#init" class="tsd-kind-icon">init</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#runcommand" class="tsd-kind-icon">run<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#uploadfolder" class="tsd-kind-icon">upload<wbr>Folder</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="../globals.html#buildcommands" class="tsd-kind-icon">build<wbr>Commands</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="../globals.html#schema" class="tsd-kind-icon">schema</a>

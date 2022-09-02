@@ -82,7 +82,7 @@
 				<a href="#about-" id="about-" style="color: inherit; text-decoration: none;">
 					<h2>About <a name = "about"></a></h2>
 				</a>
-				<p>Web Bundlr is a cli tool to deploy web apps to Arweave using Bundlr. Arweave is a protocol that allows you to store data permanently, sustainably, with a single upfront fee and Bundlr Network is a reliable multichain solution for Arweave which is building the future of data storage by bringing the speed and ease of web2 to web3 technology.
+				<p>Web Bundlr is a CLI tool to deploy web apps to Arweave using Bundlr. Arweave is a protocol that allows you to store data permanently, sustainably, with a single upfront fee and Bundlr Network is a reliable multichain solution for Arweave which is building the future of data storage by bringing the speed and ease of web2 to web3 technology.
 				Learn more about <a href="https://bundlr.network/">Bundlr</a> and <a href="https://www.arweave.org/">Arweave</a>.</p>
 				<blockquote>
 					<p>:warning: <strong>Deploy using Devnet bundlr first to check everything is working and then deploy using production bundlr.</strong></p>
@@ -91,113 +91,63 @@
 					<h2>Installing <a name = "installing"></a></h2>
 				</a>
 				<p>Install the package using npm or yarn as desired to get started.</p>
-				<pre><code>npm <span class="hljs-keyword">install </span>-g web-<span class="hljs-keyword">bundlr
-</span>
-<span class="hljs-keyword">OR
-</span>
-yarn <span class="hljs-keyword">add </span>global web-<span class="hljs-keyword">bundlr</span>
+				<pre><code>npm <span class="hljs-keyword">install</span> -g web-bundlr
+</code></pre>
+				<p>OR</p>
+				<pre><code><span class="hljs-symbol">yarn</span> <span class="hljs-keyword">add</span> <span class="hljs-meta">global</span> web-bundlr
 </code></pre>
 				<a href="#usage-" id="usage-" style="color: inherit; text-decoration: none;">
 					<h2>Usage <a name = "usage"></a></h2>
 				</a>
 				<p>Lets go through steps on how to use web-bundlr in your projects to deploy apps.</p>
+				<p><span style='color: green;'>RECOMMENDED</span>: Use hash router in react, vue, and nuxt based apps. For next apps there is no hash based routing so manifest is adjusted for routes to work on reload but dynamic routes may not work on reload.</p>
 				<a href="#reactjs-amp-nextjs" id="reactjs-amp-nextjs" style="color: inherit; text-decoration: none;">
 					<h3>ReactJS &amp; NextJS</h3>
 				</a>
-				<blockquote>
-					<p>ReactJS </p>
-					<blockquote>
-						<p><span style='color: green;'>RECOMMENDED</span>: Use HashRouter from react-router-dom in react apps. Check project <a href="https://github.com/pawanpaudel93/web-bundlr/tree/main/examples">examples</a></p>
-					</blockquote>
-				</blockquote>
-				<p>Bundlr creates a arweave manifest file when uploading a folder. So the manifest contains the paths of the files and the transaction ID to resolve to for the given path. You can see more about it here <a href="https://github.com/ArweaveTeam/arweave/blob/master/doc/path-manifest-schema.md">Arweave Manifest</a>.</p>
-				<p>So make the react build compatible on the areweave, we must use relative urls on the href instead of absolute ones so that the manifest can resolve the file path. For example href=&quot;/dist/index.js&quot; must be replaced with either href=&quot;dist/index.js&quot; or href=&quot;./dist/index.js&quot;. So to do so, we must add the following to package.json so the paths can resolve correctly.</p>
-				<pre><code><span class="hljs-symbol">homepage:</span> <span class="hljs-string">&quot;.&quot;</span>
-</code></pre>
-				<p>Now you can create the production build. Run the following command:</p>
-				<pre><code>npm run <span class="hljs-keyword">build
-</span>
-<span class="hljs-keyword">OR
-</span>
-yarn <span class="hljs-keyword">build</span>
-</code></pre>
-				<blockquote>
-					<p>Nextjs Static Export:</p>
-				</blockquote>
+				<hr>
+				<a href="#reactjs" id="reactjs" style="color: inherit; text-decoration: none;">
+					<h4><strong>ReactJS</strong></h4>
+				</a>
+				<p><span style='color: green;'>RECOMMENDED</span>: Use HashRouter from react-router-dom in react apps. Check project <a href="https://github.com/pawanpaudel93/web-bundlr/tree/main/examples">examples</a></p>
+				<a href="#nextjs-static-export" id="nextjs-static-export" style="color: inherit; text-decoration: none;">
+					<h4><strong>NextJS Static Export</strong></h4>
+				</a>
 				<p>Learn about it <a href="https://nextjs.org/docs/advanced-features/static-html-export">here</a> for the supported and unsupported features in static html export.</p>
-				<p>Add the configuration to the next.config.js or next.config.ts file.</p>
-				<pre><code><span class="hljs-symbol">assetPrefix:</span> <span class="hljs-string">&quot;./&quot;</span>,
-</code></pre>
-				<p>Add the following to package.json scripts.</p>
-				<pre><code><span class="hljs-string">&quot;export&quot;</span>: <span class="hljs-string">&quot;next build &amp;&amp; next export&quot;</span>
-</code></pre>
-				<p>And run: </p>
-				<pre><code><span class="hljs-title">npm</span> run ex<span class="hljs-keyword">port</span>
-
-<span class="hljs-type">OR</span>
-
-<span class="hljs-title">yarn</span> ex<span class="hljs-keyword">port</span>
-</code></pre>
 				<p>If you are having problems regarding images in nextjs html export, see <a href="https://stackoverflow.com/questions/65487914/error-image-optimization-using-next-js-default-loader-is-not-compatible-with-n">here</a>.</p>
 				<a href="#vuejs-amp-nuxtjs" id="vuejs-amp-nuxtjs" style="color: inherit; text-decoration: none;">
 					<h3>VueJS &amp; NuxtJS</h3>
 				</a>
-				<blockquote>
-					<p>VueJS</p>
-				</blockquote>
-				<blockquote>
-					<blockquote>
-						<p><span style='color: green;'>RECOMMENDED</span>: Use router in hash mode in vue apps.</p>
-					</blockquote>
-				</blockquote>
+				<hr>
+				<a href="#vuejs" id="vuejs" style="color: inherit; text-decoration: none;">
+					<h4><strong>VueJS</strong></h4>
+				</a>
+				<p><span style='color: green;'>RECOMMENDED</span>: Use router in hash mode in vue apps.</p>
 				<p>Modify vue.config.js or vue.config.ts to include the following config:</p>
 				<pre><code>publicPath: <span class="hljs-string">&quot;./&quot;</span> <span class="hljs-regexp">//</span> default is /
 </code></pre>
-				<p>Now, run the following command to create the production build.</p>
-				<pre><code>npm run <span class="hljs-keyword">build
-</span>
-<span class="hljs-keyword">OR
-</span>
-yarn <span class="hljs-keyword">build</span>
-</code></pre>
-				<blockquote>
-					<p>NuxtJS</p>
-				</blockquote>
+				<a href="#nuxtjs" id="nuxtjs" style="color: inherit; text-decoration: none;">
+					<h4><strong>NuxtJS</strong></h4>
+				</a>
 				<p>Modify nuxt.config.js or nuxt.config.ts to include the following config:</p>
 				<pre><code>targe<span class="hljs-variable">t:</span> <span class="hljs-string">&#x27;static&#x27;</span>, // default <span class="hljs-keyword">is</span> <span class="hljs-string">&#x27;server&#x27;</span>
 router: {
   <span class="hljs-keyword">mode</span>: <span class="hljs-string">&#x27;hash&#x27;</span>,
-  base: <span class="hljs-string">&#x27;./&#x27;</span>,
-  }
+  base:  <span class="hljs-string">&#x27;./&#x27;</span>
+}
 </code></pre>
-				<p>Now, run the following command tp generate the static production build.</p>
-				<pre><code>npm run <span class="hljs-keyword">generate</span>
-
-OR
-
-yarn <span class="hljs-keyword">generate</span>
-</code></pre>
-				<p>Read more about going full static mode in nuxtjs [Going Full Static (<a href="https://nuxtjs.org/announcements/going-full-static/">https://nuxtjs.org/announcements/going-full-static/</a>)</p>
+				<p>Read more about going full static mode in nuxtjs <a href="https://nuxtjs.org/announcements/going-full-static/">Going Full Static</a></p>
 				<a href="#vitejs" id="vitejs" style="color: inherit; text-decoration: none;">
 					<h3>ViteJS</h3>
 				</a>
-				<p>Add the following to package.json so the paths can resolve correctly.</p>
-				<pre><code><span class="hljs-symbol">homepage:</span> <span class="hljs-string">&quot;.&quot;</span>
-</code></pre>
-				<p>Modify vite.config.js or vite.config.ts to include the following config:</p>
-				<pre><code>base: <span class="hljs-string">&quot;./&quot;</span> <span class="hljs-regexp">//</span> default is /
-</code></pre>
-				<p>Now, run the following command to create the production build.</p>
-				<pre><code>npm <span class="hljs-builtin-name">run</span> build
-</code></pre>
-				<p>OR</p>
-				<pre><code><span class="hljs-attribute">yarn build</span>
-</code></pre>
+				<hr>
 				<p>Examples of react, vue and svelte using vite is included in the examples folder.</p>
 				<blockquote>
 					<p>And now you have to add config file for web-bundlr to upload the production build to arweave.</p>
 				</blockquote>
-				<p>Create a file named web-bundlr.config.js or web-bundlr.config.cjs on the root folder of your project and add the config as:</p>
+				<p>Run this command to add configuration file for web-bundlr.</p>
+				<pre><code>web-bundlr <span class="hljs-keyword">init</span>
+</code></pre>
+				<p>Now modify the configuration file (web-bundlr.config.js) as per your need from the following:</p>
 				<table>
 					<thead>
 						<tr>
@@ -209,7 +159,7 @@ yarn <span class="hljs-keyword">generate</span>
 					<tbody><tr>
 							<td>url</td>
 							<td>string</td>
-							<td>URL to the bundler Eg: Production =&gt; <a href="https://node1.bundlr.network">https://node1.bundlr.network</a>, <a href="https://node2.bundlr.network">https://node2.bundlr.network</a> Testnet =&gt; <a href="https://devnet.bundlr.network">https://devnet.bundlr.network</a></td>
+							<td>URL to the bundler <br/> Eg: Production =&gt; <br/> - <a href="https://node1.bundlr.network">https://node1.bundlr.network</a> <br/>- <a href="https://node2.bundlr.network">https://node2.bundlr.network</a> <br/> Eg: Testnet =&gt; <a href="https://devnet.bundlr.network">https://devnet.bundlr.network</a></td>
 						</tr>
 						<tr>
 							<td>currency</td>
@@ -220,6 +170,16 @@ yarn <span class="hljs-keyword">generate</span>
 							<td>wallet</td>
 							<td>any</td>
 							<td>private key (in whatever form required)</td>
+						</tr>
+						<tr>
+							<td>folderPath?</td>
+							<td>string</td>
+							<td>folderPath of the build folder to be deployed. Auto discovered for app using vue, nuxt, react, next and vite if not provided. It may be needed for simple JS/TS app.</td>
+						</tr>
+						<tr>
+							<td>appType?</td>
+							<td>string</td>
+							<td>Possible values: &#39;react&#39;, &#39;next&#39;, &#39;vue&#39;, &#39;nuxt&#39;, &#39;vite&#39; and &#39;&#39;</td>
 						</tr>
 						<tr>
 							<td>config?</td>
@@ -241,11 +201,6 @@ yarn <span class="hljs-keyword">generate</span>
 							<td>number</td>
 							<td>Default is used if not provided</td>
 						</tr>
-						<tr>
-							<td>folderPath</td>
-							<td>string</td>
-							<td>relative build folder path from project root folder Eg: &#39;build&#39; ,&#39;./build&#39;, &#39;out&#39;</td>
-						</tr>
 				</tbody></table>
 				<p>Example of web-bundlr.config.js for different currency can be:</p>
 				<p>For Polygon (MATIC) on testnet.</p>
@@ -256,12 +211,13 @@ const WebBundlrConfig = {
 <span class="hljs-symbol">  currency:</span> <span class="hljs-string">&quot;matic&quot;</span>
 <span class="hljs-symbol">  wallet:</span> <span class="hljs-string">&quot;&lt;private-key&gt;&quot;</span>,
 <span class="hljs-symbol">  folderPath:</span> <span class="hljs-string">&quot;build&quot;</span>,
+<span class="hljs-symbol">  appType:</span> <span class="hljs-string">&quot;react&quot;</span>,
 <span class="hljs-symbol">  config:</span> {
 <span class="hljs-symbol">    providerUrl:</span> <span class="hljs-string">&quot;https://rpc.ankr.com/polygon_mumbai&quot;</span>,
   },
 };
 
-module.exports = WebBundlrConfig;
+export default WebBundlrConfig;
 </code></pre>
 				<p>For Solana:</p>
 				<pre><code><span class="hljs-comment">/** @type {import(&#x27;web-bundlr&#x27;).WebBundlrConfig} */</span>
@@ -270,13 +226,14 @@ const WebBundlrConfig = {
 <span class="hljs-symbol">  url:</span> <span class="hljs-string">&quot;https://devnet.bundlr.network&quot;</span>,
 <span class="hljs-symbol">  currency:</span> <span class="hljs-string">&quot;solana&quot;</span>
 <span class="hljs-symbol">  wallet:</span> <span class="hljs-string">&quot;&lt;private-key&gt;&quot;</span>,
-<span class="hljs-symbol">  folderPath:</span> <span class="hljs-string">&quot;build&quot;</span>,
+<span class="hljs-symbol">  folderPath:</span> <span class="hljs-string">&quot;out&quot;</span>,
+<span class="hljs-symbol">  appType:</span> <span class="hljs-string">&quot;next&quot;</span>,
 <span class="hljs-symbol">  config:</span> {
 <span class="hljs-symbol">    providerUrl:</span> <span class="hljs-string">&quot;https://api.devnet.solana.com&quot;</span>,
   },
 };
 
-module.exports = WebBundlrConfig;
+export default WebBundlrConfig;
 </code></pre>
 				<p>For ERC20 Tokens: </p>
 				<p>For example chainlink on Rinkeby testnet</p>
@@ -286,19 +243,20 @@ const WebBundlrConfig = {
 <span class="hljs-symbol">  url:</span> <span class="hljs-string">&quot;https://devnet.bundlr.network&quot;</span>,
 <span class="hljs-symbol">  currency:</span> <span class="hljs-string">&quot;chainlink&quot;</span>
 <span class="hljs-symbol">  wallet:</span> <span class="hljs-string">&quot;&lt;private-key&gt;&quot;</span>,
-<span class="hljs-symbol">  folderPath:</span> <span class="hljs-string">&quot;build&quot;</span>,
+<span class="hljs-symbol">  folderPath:</span> <span class="hljs-string">&quot;dist&quot;</span>,
+<span class="hljs-symbol">  appType:</span> <span class="hljs-string">&quot;vue&quot;</span>,
 <span class="hljs-symbol">  config:</span> {
 <span class="hljs-symbol">    providerUrl:</span> <span class="hljs-string">&quot;https://rpc.ankr.com/eth_rinkeby&quot;</span>,
 <span class="hljs-symbol">    contractAddress:</span> <span class="hljs-string">&quot;0x01BE23585060835E02B77ef475b0Cc51aA1e0709&quot;</span>
   },
 };
 
-module.exports = WebBundlrConfig;
+export default WebBundlrConfig;
 </code></pre>
 				<p>After the configuration, run web-bundlr command from the root folder of the project.</p>
-				<pre><code><span class="hljs-attribute">web-bundlr</span>
+				<pre><code><span class="hljs-attribute">web-bundlr deploy</span>
 </code></pre>
-				<p>You have to fund the bundlr with the currency you have configured. The cli will show how much bytes is going to be uploaded and how much amount in configured currency is required to perform the upload and it will ask for funding if the loaded balance is not sufficient.</p>
+				<p>You have to fund the bundlr with the currency you have configured. The CLI will show how much bytes is going to be uploaded and how much amount in configured currency is required to perform the upload and it will ask for funding if the loaded balance is not sufficient.</p>
 				<a href="#author" id="author" style="color: inherit; text-decoration: none;">
 					<h2>Author</h2>
 				</a>
@@ -337,16 +295,46 @@ module.exports = WebBundlrConfig;
 						<a href="globals.html#webbundlrconfig" class="tsd-kind-icon">Web<wbr>Bundlr<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-variable">
+						<a href="globals.html#defaultconfig" class="tsd-kind-icon">default<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#jiti" class="tsd-kind-icon">jiti</a>
+					</li>
+					<li class=" tsd-kind-variable">
 						<a href="globals.html#log" class="tsd-kind-icon">log</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#program" class="tsd-kind-icon">program</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#buildapp" class="tsd-kind-icon">build<wbr>App</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#buildconfig" class="tsd-kind-icon">build<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#checkconfig" class="tsd-kind-icon">check<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#main" class="tsd-kind-icon">main</a>
+						<a href="globals.html#deploy" class="tsd-kind-icon">deploy</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#detectframework" class="tsd-kind-icon">detect<wbr>Framework</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#init" class="tsd-kind-icon">init</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#runcommand" class="tsd-kind-icon">run<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#uploadfolder" class="tsd-kind-icon">upload<wbr>Folder</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#buildcommands" class="tsd-kind-icon">build<wbr>Commands</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#schema" class="tsd-kind-icon">schema</a>
