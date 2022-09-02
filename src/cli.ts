@@ -15,7 +15,7 @@ import { log, WebBundlr, WebBundlrConfig } from './lib/web-bundlr';
 
 const jiti = createJITI(__filename);
 
-const defaultConfigJs = `/** @type {import('web-bundlr').WebBundlrConfig} */
+let defaultConfig = `/** @type {import('web-bundlr').WebBundlrConfig} */
 
 const WebBundlrConfig = {
   url: "https://devnet.bundlr.network",
@@ -30,6 +30,14 @@ const WebBundlrConfig = {
 
 export default WebBundlrConfig;
 `;
+
+const buildCommands = {
+  react: 'npx react-scripts build',
+  next: 'npx next build && npx next export',
+  vue: 'npx vue-cli-service build',
+  nuxt: 'npx nuxt generate',
+  vite: 'npx vite build',
+};
 
 const checkConfig = (config: WebBundlrConfig) => {
   const errors: string[] = [];
@@ -62,7 +70,7 @@ const getConfig = (pattern: string, folderPath?: string) => {
 };
 
 const runCommand = async (command: string) => {
-  log.info('Running command: ' + command);
+  log.info('Running command: ' + chalk.gray(command));
   const child = exec(command);
   child.stdout.pipe(process.stdout);
   child.stderr.on('data', (data) => console.log(data));
@@ -82,28 +90,30 @@ const buildConfig = async (config: WebBundlrConfig) => {
   config.appType = appType === 'create-react-app' ? 'react' : appType;
   if (config.appType === 'react') {
     config.folderPath = 'build';
-    await runCommand('npx react-scripts build');
   } else if (config.appType === 'next') {
     const appConfig = getConfig('next.config.{js,ts}', config.folderPath);
     config.folderPath = appConfig.outDir ? appConfig.outDir : 'out';
-    await runCommand('npx next build && npx next export');
   } else if (config.appType === 'vue') {
     const appConfig = getConfig('vue.config.{js,ts}', config.folderPath);
     config.folderPath = appConfig.outputDir ? appConfig.outputDir : 'dist';
-    await runCommand('npx vue-cli-service build');
   } else if (config.appType === 'nuxt') {
     const appConfig = getConfig('nuxt.config.{js,ts}', config.folderPath);
     config.folderPath = appConfig?.generate?.dir ? appConfig?.generate?.dir : 'dist';
-    await runCommand('npx nuxt generate');
   } else if (config.appType === 'vite') {
     const appConfig = getConfig('vite.config.{js,ts}', config.folderPath);
     config.folderPath = appConfig?.build?.outDir ? appConfig?.build?.outDir : 'dist';
-    await runCommand('npx vite build');
+  }
+};
+
+const buildApp = async (config: WebBundlrConfig) => {
+  if (config.appType) {
+    await runCommand(buildCommands[config.appType]);
   }
 };
 
 const uploadFolder = async (config: WebBundlrConfig) => {
   checkConfig(config);
+  await buildApp(config);
   if (fs.existsSync(config.folderPath)) {
     try {
       const bundlr = new WebBundlr(config);
@@ -138,7 +148,6 @@ const init = async () => {
   }
   const appType = await detectFramework();
   let folderPath = '';
-  let defaultConfig = '';
   let configFileName = '';
   if (appType === 'create-react-app') {
     folderPath = 'build';
@@ -154,7 +163,7 @@ const init = async () => {
     const appConfig = getConfig('vite.config.{js,ts}');
     folderPath = appConfig?.build?.outDir ? appConfig?.build?.outDir : 'dist';
   }
-  defaultConfig = defaultConfigJs
+  defaultConfig = defaultConfig
     .replace('FOLDER_PATH', folderPath)
     .replace('APP_TYPE', appType === 'create-react-app' ? 'react' : appType);
   configFileName = 'web-bundlr.config.js';

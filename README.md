@@ -11,7 +11,7 @@
 
 ## About <a name = "about"></a>
 
-Web Bundlr is a cli tool to deploy web apps to Arweave using Bundlr. Arweave is a protocol that allows you to store data permanently, sustainably, with a single upfront fee and Bundlr Network is a reliable multichain solution for Arweave which is building the future of data storage by bringing the speed and ease of web2 to web3 technology.
+Web Bundlr is a CLI tool to deploy web apps to Arweave using Bundlr. Arweave is a protocol that allows you to store data permanently, sustainably, with a single upfront fee and Bundlr Network is a reliable multichain solution for Arweave which is building the future of data storage by bringing the speed and ease of web2 to web3 technology.
 Learn more about [Bundlr](https://bundlr.network/) and [Arweave](https://www.arweave.org/).
 
 > :warning: **Deploy using Devnet bundlr first to check everything is working and then deploy using production bundlr.**
@@ -155,7 +155,7 @@ After the configuration, run web-bundlr command from the root folder of the proj
 ```
 web-bundlr deploy
 ```
-You have to fund the bundlr with the currency you have configured. The cli will show how much bytes is going to be uploaded and how much amount in configured currency is required to perform the upload and it will ask for funding if the loaded balance is not sufficient.
+You have to fund the bundlr with the currency you have configured. The CLI will show how much bytes is going to be uploaded and how much amount in configured currency is required to perform the upload and it will ask for funding if the loaded balance is not sufficient.
 
 ## Author
 
