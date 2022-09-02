@@ -4,7 +4,7 @@ import Api from '@bundlr-network/client/build/common/api';
 import Bundlr from '@bundlr-network/client/build/common/bundlr';
 import Fund from '@bundlr-network/client/build/common/fund';
 import Utils from '@bundlr-network/client/build/common/utils';
-import getCurrency from '@bundlr-network/client/build/node/currencies';
+import getCurrency from '@bundlr-network/client/build/node/currencies/index';
 import { NodeCurrency } from '@bundlr-network/client/build/node/types';
 import { AxiosResponse } from 'axios';
 import glob from 'glob';
@@ -16,7 +16,8 @@ export type WebBundlrConfig = {
   url: string;
   currency: string;
   wallet: any;
-  folderPath: string;
+  folderPath?: string;
+  appType?: 'react' | 'next' | 'vue' | 'nuxt' | 'vite' | '';
   config?: {
     timeout?: number;
     providerUrl?: string;
@@ -35,6 +36,7 @@ export class WebBundlr extends Bundlr {
   public declare uploader: WebUploader; // re-define type
   public declare currencyConfig: NodeCurrency;
   public folderPath: string;
+  public appType: string;
 
   /**
    * Constructs a new Bundlr instance, as well as supporting subclasses
@@ -62,6 +64,7 @@ export class WebBundlr extends Bundlr {
     this.funder = new Fund(this.utils);
     this.uploader = new WebUploader(this.api, this.utils, this.currency, this.currencyConfig);
     this.folderPath = config.folderPath;
+    this.appType = config.appType;
   }
 
   /**
@@ -82,24 +85,19 @@ export class WebBundlr extends Bundlr {
 
   private modifyHtml(path: string) {
     const html = fs.readFileSync(path, 'utf8');
-    if (
-      /src="\/(.*?)"/g.test(html) ||
-      /src='\/(.*?)'/g.test(html) ||
-      /href="\/(.*?(css|js))"/g.test(html) ||
-      /href='\/(.*?(css|js))'/g.test(html)
-    ) {
+    if (/src=["'](\/.*?\..*?)["']/g.test(html) || /href=["'](\/.*?\..*?)["']/g.test(html)) {
       const modifiedHtml = html
-        .replace(/src="\/(.*?)"/g, 'src="$1"')
-        .replace(/src='\/(.*?)'/g, "src='$1'")
-        .replace(/href="\/(.*?(css|js))"/g, 'href="$1"')
-        .replace(/href='\/(.*?(css|js))'/g, "href='$1'");
+        .replace(/src=["'](\/.*?\..*?)["']/g, 'src=".$1"')
+        .replace(/href=["'](\/.*?\..*?)["']/g, 'href=".$1"');
       fs.writeFileSync(path, modifiedHtml);
     }
   }
 
   public async uploadFolder() {
-    this.modifyHtmls(this.folderPath);
-    return this.uploader.uploadFolder(this.folderPath, this, 'index.html', 10, false, async (logInfo: string) => {
+    if (this.appType !== 'next') {
+      this.modifyHtmls(this.folderPath);
+    }
+    return this.uploader.uploadFolder(this, 'index.html', 10, false, async (logInfo: string) => {
       log.info(logInfo);
     });
   }

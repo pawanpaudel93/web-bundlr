@@ -5,7 +5,6 @@ import * as p from 'path';
 import { Readable } from 'stream';
 
 import Api from '@bundlr-network/client/build/common/api';
-import Bundlr from '@bundlr-network/client/build/common/bundlr';
 import { Currency } from '@bundlr-network/client/build/common/types';
 import Uploader from '@bundlr-network/client/build/common/upload';
 import Utils from '@bundlr-network/client/build/common/utils';
@@ -16,9 +15,12 @@ import * as csv from 'csv';
 import mime from 'mime-types';
 import prompt from 'prompt';
 
+import { WebBundlr } from './web-bundlr';
+
 const schema = {
   properties: {
     amount: {
+      description: '',
       pattern: /^[0-9]+(\.[0-9]+)?$/,
       message: 'Please enter a valid amount',
       required: true,
@@ -79,14 +81,13 @@ export default class WebUploader extends Uploader {
    */
 
   public async uploadFolder(
-    path: string,
-    bundlr: Bundlr,
+    bundlr: WebBundlr,
     indexFile?: string,
     batchSize = 10,
     keepDeleted = true,
     logFunction?: (log: string) => Promise<any>
   ): Promise<string> {
-    path = p.resolve(path);
+    const path = p.resolve(bundlr.folderPath);
     const alreadyProcessed = new Map();
     this.utils.currencyConfig.address;
 
@@ -129,7 +130,10 @@ export default class WebUploader extends Uploader {
     let total = 0;
     let i = 0;
     for await (const f of this.walk(path)) {
-      const relPath = p.relative(path, f);
+      let relPath = p.relative(path, f);
+      if (relPath.endsWith('.html') && bundlr.appType === 'next') {
+        relPath = relPath.replace('.html', '');
+      }
       if (!alreadyProcessed.has(relPath)) {
         files.push(f);
         total += (await promises.stat(f)).size;
@@ -170,7 +174,7 @@ export default class WebUploader extends Uploader {
       const ticker = this.currencyConfig.ticker;
       const base = this.currencyConfig.base[1];
       logFunction(`Insufficient fund !!!.`);
-      logFunction(`Please enter an amount in ${ticker} to fund Bundlr to upload or press Ctrl+C to exit`);
+      schema.properties.amount.description = `Please enter an amount in ${ticker} to fund Bundlr to upload or press Ctrl+C to exit`;
       prompt.start();
       const { amount } = await prompt.get(schema);
       logFunction(`Funding Bundlr with ${amount} ${ticker}`);
@@ -194,7 +198,11 @@ export default class WebUploader extends Uploader {
 
     const processor = async (data): Promise<void> => {
       if (data?.res?.data?.id) {
-        stringifier.write([p.relative(path, data.item), data.res.data.id]);
+        let filePath = p.relative(path, data.item);
+        if (filePath.endsWith('.html') && bundlr.appType === 'next') {
+          filePath = filePath.replace('.html', '');
+        }
+        stringifier.write([filePath, data.res.data.id]);
       }
     };
     const processingResults = await this.concurrentUploader(files, batchSize, processor, logFunction);
@@ -218,7 +226,7 @@ export default class WebUploader extends Uploader {
     await new Promise((r) => wstrm.close(r));
     // generate JSON
     await logFunction('Generating JSON manifest...');
-    const jsonManifestPath = await this.generateManifestFromCsv(path, alreadyProcessed, indexFile);
+    const jsonManifestPath = await this.generateManifestFromCsv(path, bundlr.appType, alreadyProcessed, indexFile);
     // upload the manifest
     await logFunction('Uploading JSON manifest...');
     const tags = [
@@ -278,6 +286,7 @@ export default class WebUploader extends Uploader {
    */
   private async generateManifestFromCsv(
     path: string,
+    appType: string,
     nowRemoved?: Map<string, true>,
     indexFile?: string
   ): Promise<string> {
@@ -304,7 +313,11 @@ export default class WebUploader extends Uploader {
     wstrm.write(`\n}`);
     // add index
     if (indexFile) {
-      wstrm.write(`,\n"index":{"path":"${indexFile}"}`);
+      wstrm.write(
+        `,\n"index":{"path":"${
+          indexFile.endsWith('.html') && appType === 'next' ? indexFile.replace('.html', '') : indexFile
+        }"}`
+      );
     }
 
     wstrm.write(`\n}`);
