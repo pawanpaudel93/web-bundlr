@@ -22,15 +22,18 @@ Learn more about [Bundlr](https://bundlr.network/) and [Arweave](https://www.arw
 Install the package using npm or yarn as desired to get started.
 ```
 npm install -g web-bundlr
+```
 
 OR
-
+```
 yarn add global web-bundlr
 ```
 
 ## Usage <a name = "usage"></a>
 
 Lets go through steps on how to use web-bundlr in your projects to deploy apps.
+
+<span style='color: green;'>RECOMMENDED</span>: Use hash router in react, vue, and nuxt based apps. For next apps there is no hash based routing so manifest is adjusted for routes to work on reload but dynamic routes may not work on reload.
 
 ### ReactJS & NextJS
 
@@ -54,6 +57,11 @@ If you are having problems regarding images in nextjs html export, see [here](ht
 
 <span style='color: green;'>RECOMMENDED</span>: Use router in hash mode in vue apps.
 
+Modify vue.config.js or vue.config.ts to include the following config:
+```
+publicPath: "./" // default is /
+```
+
 #### **NuxtJS**
 
 Modify nuxt.config.js or nuxt.config.ts to include the following config:
@@ -62,6 +70,7 @@ Modify nuxt.config.js or nuxt.config.ts to include the following config:
 target: 'static', // default is 'server'
 router: {
   mode: 'hash',
+  base:  './'
 }
 ```
 
