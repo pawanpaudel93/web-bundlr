@@ -7,14 +7,13 @@
 - [Usage](#usage)
 - [Contributing](#contributing)
 
-> NOTE: WIP
 
 ## About <a name = "about"></a>
 
 Web Bundlr is a CLI tool to deploy web apps to Arweave using Bundlr. Arweave is a protocol that allows you to store data permanently, sustainably, with a single upfront fee and Bundlr Network is a reliable multichain solution for Arweave which is building the future of data storage by bringing the speed and ease of web2 to web3 technology.
 Learn more about [Bundlr](https://bundlr.network/) and [Arweave](https://www.arweave.org/).
 
-> :warning: **Deploy using Devnet bundlr first to check everything is working and then deploy using production bundlr.**
+> __Note__: **Deploy using Devnet bundlr first to check everything is working and then deploy using production bundlr.**
 
 
 ## Installing <a name = "installing"></a>
@@ -33,7 +32,7 @@ yarn add global web-bundlr
 
 Lets go through steps on how to use web-bundlr in your projects to deploy apps.
 
-<span style='color: green;'>RECOMMENDED</span>: Use hash router in react, vue, and nuxt based apps. For next apps there is no hash based routing so manifest is adjusted for routes to work on reload but dynamic routes may not work on reload.
+> __Note__: Use hash router in react, vue, and nuxt based apps. For next apps there is no hash based routing so manifest is adjusted for routes to work on reload but dynamic routes may not work on reload.
 
 ### ReactJS & NextJS
 
@@ -41,7 +40,7 @@ Lets go through steps on how to use web-bundlr in your projects to deploy apps.
 
 #### **ReactJS**
 
-<span style='color: green;'>RECOMMENDED</span>: Use HashRouter from react-router-dom in react apps. Check project [examples](https://github.com/pawanpaudel93/web-bundlr/tree/main/examples)
+> __Note__: Use HashRouter from react-router-dom in react apps. Check project [examples](https://github.com/pawanpaudel93/web-bundlr/tree/main/examples)
 
  #### **NextJS Static Export**
 
@@ -54,8 +53,6 @@ If you are having problems regarding images in nextjs html export, see [here](ht
 ------------
 
 #### **VueJS**
-
-<span style='color: green;'>RECOMMENDED</span>: Use router in hash mode in vue apps.
 
 Modify vue.config.js or vue.config.ts to include the following config:
 ```
@@ -79,10 +76,13 @@ Read more about going full static mode in nuxtjs [Going Full Static](https://nux
 ### ViteJS
 
 ------------
+> __Note__: Use hash router for react, vue and svelte accordingly.
 
 Examples of react, vue and svelte using vite is included in the examples folder.
 
-> And now you have to add config file for web-bundlr to upload the production build to arweave.
+### Configuration
+
+And now you have to add config file for web-bundlr to upload the production build to arweave.
 
 Run this command to add configuration file for web-bundlr.
 
@@ -171,6 +171,8 @@ After the configuration, run web-bundlr command from the root folder of the proj
 web-bundlr deploy
 ```
 You have to fund the bundlr with the currency you have configured. The CLI will show how much bytes is going to be uploaded and how much amount in configured currency is required to perform the upload and it will ask for funding if the loaded balance is not sufficient.
+
+After apps are deployed, configure ArNS from [Permapages](https://permapages.arweave.dev/#/arns) for the deployed app.
 
 ## Author
 
