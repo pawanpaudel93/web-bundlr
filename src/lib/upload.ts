@@ -233,7 +233,7 @@ export default class WebUploader extends Uploader {
       { name: 'Type', value: 'manifest' },
       { name: 'Content-Type', value: 'application/x.arweave-manifest+json' },
     ];
-    const mres = await this.upload(Buffer.from(readFileSync(jsonManifestPath)), tags).catch((e) => {
+    const mres = await this.upload(Buffer.from(readFileSync(jsonManifestPath)), { tags }).catch((e) => {
       throw new Error(`Failed to upload manifest: ${e.message}`);
     });
     await logFunction('Done!');

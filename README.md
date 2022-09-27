@@ -146,7 +146,7 @@ export default WebBundlrConfig;
 
 For ERC20 Tokens: 
 
-For example chainlink on Rinkeby testnet
+For example chainlink on Goerli testnet
 ```
 /** @type {import('web-bundlr').WebBundlrConfig} */
 
@@ -157,8 +157,8 @@ const WebBundlrConfig = {
   folderPath: "dist",
   appType: "vue",
   config: {
-    providerUrl: "https://rpc.ankr.com/eth_rinkeby",
-    contractAddress: "0x01BE23585060835E02B77ef475b0Cc51aA1e0709"
+    providerUrl: "https://rpc.ankr.com/eth_goerli",
+    contractAddress: "0x326C977E6efc84E512bB9C30f76E30c160eD06FB"
   },
 };
 
