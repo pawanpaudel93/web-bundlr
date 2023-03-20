@@ -85,10 +85,10 @@ export class WebBundlr extends Bundlr {
 
   private modifyHtml(path: string) {
     const html = fs.readFileSync(path, 'utf8');
-    if (/src=["'](\/.*?\..*?)["']/g.test(html) || /href=["'](\/.*?\..*?)["']/g.test(html)) {
+    if (/src=["'](?!\/\/)(\/.*?\..*?)["']/g.test(html) || /href=["'](?!\/\/)(\/.*?\..*?)["']/g.test(html)) {
       const modifiedHtml = html
-        .replace(/src=["'](\/.*?\..*?)["']/g, 'src=".$1"')
-        .replace(/href=["'](\/.*?\..*?)["']/g, 'href=".$1"');
+        .replace(/src=["'](?!\/\/)(\/.*?\..*?)["']/g, 'src=".$1"')
+        .replace(/href=["'](?!\/\/)(\/.*?\..*?)["']/g, 'href=".$1"');
       fs.writeFileSync(path, modifiedHtml);
     }
   }
