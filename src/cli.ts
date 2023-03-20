@@ -202,7 +202,7 @@ const program = new Command();
 program
   .name('web-bundlr')
   .description('A CLI tool to deploy web apps to Arweave using Bundlr Network')
-  .version('2.0.1');
+  .version('2.0.2');
 
 program.command('init').description('Initialize web-bundlr configuration.').action(init);
 program.command('deploy').description('Deploy web app to Arweave.').action(deploy);
